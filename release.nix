@@ -25,7 +25,7 @@
 # only through the ghc-wasm-meta pin.
 { system ? builtins.currentSystem, inputs ? {} }:
 
-let nix-haskell = import ../.. { inherit system inputs; };
+let nix-haskell = import inputs.nix-haskell { inherit system inputs; };
 
     project = modules: nix-haskell ([ (import ./project.nix) ] ++ modules);
 

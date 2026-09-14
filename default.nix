@@ -1,6 +1,6 @@
 { system ? builtins.currentSystem, inputs ? {} }:
 
-let nix-haskell = import ../.. { inherit system inputs; };
+let nix-haskell = import inputs.nix-haskell { inherit system inputs; };
     project = nix-haskell (import ./project.nix);
 
     # Builds the wasm target with the GHC 9.12 bindist from the ghc-wasm-meta

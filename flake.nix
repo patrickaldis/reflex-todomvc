@@ -8,7 +8,7 @@
     # URL.
     self.submodules = true;
 
-    nix-haskell.url = ../..;
+    nix-haskell.url = "git+https://github.com/reflex-frp/nix-haskell?submodules=1";
 
     nixpkgs.follows = "nix-haskell/nixpkgs";
   };
