@@ -474,17 +474,24 @@
       "inputs": {
         "flake-compat": "flake-compat",
         "haskell-nix": "haskell-nix",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "sandstone": "sandstone"
       },
       "locked": {
-        "path": "../..",
-        "type": "path"
+        "lastModified": 1789188485,
+        "narHash": "sha256-1JM34VEZX4b083RLz2Zh1LdD8yKjqmGWsgEl1Hqn9ic=",
+        "ref": "refs/heads/main",
+        "rev": "e5111a17b2344c5842e1093496206ee0554acb30",
+        "revCount": 176,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/reflex-frp/nix-haskell"
       },
       "original": {
-        "path": "../..",
-        "type": "path"
-      },
-      "parent": []
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/reflex-frp/nix-haskell"
+      }
     },
     "nixpkgs": {
       "inputs": {
@@ -639,6 +646,20 @@
           "nixpkgs"
         ]
       }
+    },
+    "sandstone": {
+      "flake": false,
+      "locked": {
+        "path": "pins/sandstone",
+        "type": "path"
+      },
+      "original": {
+        "path": "pins/sandstone",
+        "type": "path"
+      },
+      "parent": [
+        "nix-haskell"
+      ]
     },
     "stackage": {
       "flake": false,
