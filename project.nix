@@ -25,6 +25,16 @@ in {
     };
 
     options.shell.withHaddock = false;
+    options.shell.tools.haskell-language-server = lib.mkDefault {
+      src = fetchGit {
+        url = "https://github.com/haskell/haskell-language-server.git";
+        rev = "16bf0466293daabac6f216d2af7e5bccbb91fcc1";
+      };
+      cabalProjectLocal = ''
+        package *
+          ghc-options: ${lib.strings.concatStringsSep " " config.ghcOptions}
+      '';
+    };
   };
 
   nixpkgs = {
