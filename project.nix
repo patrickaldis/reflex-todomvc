@@ -77,11 +77,11 @@ in {
     # so the matrix gives it a wasm target only through the ghc-wasm-meta
     # pin. Its shell follows. The release matrix adds the wasi32 shell
     # target when it applies that pin.
-    shell.crossPlatforms = ps: with ps; [ ghcjs ];
+    shell.crossPlatforms = ps: with ps; [ ];
   };
 
   shell = {
-    crossPlatforms = ps: with ps; [ ghcjs wasi32 ];
+    crossPlatforms = ps: with ps; [ wasi32 ];
     packages = ps: with ps; [ reflex-todomvc ];
     withHoogle = false;
   };

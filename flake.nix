@@ -36,10 +36,31 @@
 
       packages = eachSystem (system:
         let project = projectFor system;
+            projectRelease = 
+              projectFor system // {
+                # Every driver, compiler and cross target this example is meant
+                # to work for, built both ways.
+                release = import ./release.nix { inherit system inputs; };
+              };
+            pkgs = (import inputs.nixpkgs {inherit system;});
         in rec {
           default = haskell-nix;
           haskell-nix = todomvcExe project.haskell-nix.projectCross.wasi32;
           nixpkgs = project.nixpkgs.projectCross.ghcjs.packages.reflex-todomvc;
+          wasm-release-full = pkgs.runCommand "full release" {} ''
+            mkdir -p $out
+
+            cp ${./index-wasm.html} $out/index.html
+            cp ${./wasm.js} $out/wasm.js
+            cp ${projectRelease.release.bundle.haskell-nix.ghc914.wasi32.optimized} $out/reflex-todomvc.wasm
+            cp ${projectRelease.release.bundle.haskell-nix.ghc914.wasi32.jsffi} $out/ghc_wasm_jsffi.js
+          '';
+
+          run-server = pkgs.callPackage ({ writeShellScriptBin, python3 }:
+            writeShellScriptBin "simpleHTTPServer" ''
+              ${python3}/bin/python -m http.server -d ${wasm-release-full} "$@"
+            ''
+          ) {};
 
           # Builds the wasm target with the GHC 9.12 bindist from the
           # ghc-wasm-meta pin instead of the drivers' own compilers.
