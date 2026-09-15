@@ -98,13 +98,13 @@ newJSVal: (v) => __ghc_wasm_jsffi_jsval_manager.newJSVal(v),
 getJSVal: (k) => __ghc_wasm_jsffi_jsval_manager.getJSVal(k),
 freeJSVal: (k) => __ghc_wasm_jsffi_jsval_manager.freeJSVal(k),
 scheduleWork: () => setImmediate(__exports.rts_schedulerLoop),
-ZC0ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1,$2) => ((new TextDecoder('utf-8', {fatal: true})).decode(new Uint8Array(__exports.memory.buffer, $1, $2))),
-ZC1ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1,$2,$3) => ((new TextEncoder()).encodeInto($1, new Uint8Array(__exports.memory.buffer, $2, $3)).written),
-ZC2ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1) => ($1.length),
-ZC6ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1) => ((...args) => __exports.ghczuwasmzujsffiZC5ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC($1, ...args)),
-ZC8ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1) => ((...args) => __exports.ghczuwasmzujsffiZC7ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC($1, ...args)),
-ZC10ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1) => ((...args) => __exports.ghczuwasmzujsffiZC9ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC($1, ...args)),
-ZC11ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC: async ($1,$2,$3) => {        var jsaddle_values = new Map();
+ZC0ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1,$2) => ((new TextDecoder('utf-8', {fatal: true})).decode(new Uint8Array(__exports.memory.buffer, $1, $2))),
+ZC1ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1,$2,$3) => ((new TextEncoder()).encodeInto($1, new Uint8Array(__exports.memory.buffer, $2, $3)).written),
+ZC2ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1) => ($1.length),
+ZC6ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1) => ((...args) => __exports.ghczuwasmzujsffiZC5ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC($1, ...args)),
+ZC8ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1) => ((...args) => __exports.ghczuwasmzujsffiZC7ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC($1, ...args)),
+ZC10ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC: ($1) => ((...args) => __exports.ghczuwasmzujsffiZC9ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC($1, ...args)),
+ZC11ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC: async ($1,$2,$3) => {        var jsaddle_values = new Map();
         var jsaddle_free = new Map();
         jsaddle_values.set(0, null);
         jsaddle_values.set(1, undefined);
@@ -118,10 +118,11 @@ ZC11ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJS
         var asyncBatch = null;
 
 var syncDepth = 0;
+var initialSyncDepth = 0;
 (async () => {
   while (true) {
     const batch = JSON.parse(await $3());
-  var runBatch = function(firstBatch, initialSyncDepth) {
+  var runBatch = function(firstBatch) {
     var processBatch = function(timestamp) {
       var batch = firstBatch;
       var callbacksToFree = [];
@@ -219,7 +220,8 @@ var syncDepth = 0;
                                         if(inCallback > 0) {
                                           $1(JSON.stringify({"tag": "Callback", "contents": [lastResults[0], lastResults[1], nFunction, nFunctionInFunc, nThis, args]}));
                                         } else {
-                                          runBatch(JSON.parse($2(JSON.stringify({"tag": "Callback", "contents": [lastResults[0], lastResults[1], nFunction, nFunctionInFunc, nThis, args]}))), 1);
+                                          initialSyncDepth = 1;
+                                          runBatch(JSON.parse($2(JSON.stringify({"tag": "Callback", "contents": [lastResults[0], lastResults[1], nFunction, nFunctionInFunc, nThis, args]}))));
                                         }
                                     };
                                     jsaddle_values.set(nFunction, func);
@@ -387,12 +389,13 @@ var syncDepth = 0;
         processBatch(globalThis.performance ? globalThis.performance.now() : null);
     }
   };
+  initialSyncDepth = 0;
   runBatch(batch);
 
   }
 })();
 },
-ZC12ZCjsaddlezmwasmzm0zi1zi2zi1zmA09X2Ej09RBjulYi61EJhZCLanguageziJavascriptziJSaddleziWasmziInternalZC: async () => {globalThis["h$isNumber"] = function(o) {    return typeof(o) === 'number';
+ZC12ZCjsaddlezmwasmzm0zi1zi2zi1zm6EswvBf259wBtfIlfUD9AuZCLanguageziJavascriptziJSaddleziWasmziInternalZC: async () => {globalThis["h$isNumber"] = function(o) {    return typeof(o) === 'number';
 };
 
 // returns true for null, but not for functions and host objects
